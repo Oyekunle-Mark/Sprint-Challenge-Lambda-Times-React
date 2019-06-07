@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 import Tabs from "./Tabs";
 import Cards from "./Cards";
+import Carousel from "../Carousel/Carousel";
 import { tabData, cardData } from "../../data";
 
 const StyledContent = styled.div`
-  display: flex; 
-  flex-direction: column; 
+  display: flex;
+  flex-direction: column;
   align-items: center;
 `;
 
@@ -52,6 +53,9 @@ export default class Content extends Component {
           selectedTab={selected}
           selectTabHandler={this.changeSelected}
         />
+
+        <Carousel />
+
         <Cards cardList={this.filterCards()} />
       </StyledContent>
     );
