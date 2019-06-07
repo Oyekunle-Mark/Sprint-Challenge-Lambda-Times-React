@@ -1,8 +1,15 @@
 import React, { Component } from "react";
+import styled from 'styled-components';
 
 import Tabs from "./Tabs";
 import Cards from "./Cards";
 import { tabData, cardData } from "../../data";
+
+const StyledContent = styled.div`
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+`;
 
 export default class Content extends Component {
   constructor(props) {
@@ -39,14 +46,14 @@ export default class Content extends Component {
     const { tabs, selected } = this.state;
 
     return (
-      <div className="content-container">
+      <StyledContent>
         <Tabs
           tabs={tabs}
           selectedTab={selected}
           selectTabHandler={this.changeSelected}
         />
         <Cards cardList={this.filterCards()} />
-      </div>
+      </StyledContent>
     );
   }
 }
