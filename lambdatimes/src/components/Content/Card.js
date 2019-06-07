@@ -1,19 +1,25 @@
-import React from 'react';
+import React from "react";
+import Props from "prop-types";
 
-const Card = ({ card }) => {
-  return (
-    <div className="card">
-      <div className="headline">{/* headline goes here */} {card.headline}</div>
-      <div className="author">
-        <div className="img-container">
-          <img src={card.img} />
-        </div>
-        <span>By {/* author goes here */} {card.author} </span>
+const Card = ({ currentCard }) => (
+  <div className="card">
+    <div className="headline">{currentCard.headline}</div>
+    <div className="author">
+      <div className="img-container">
+        <img src={currentCard.img} alt="author" />
       </div>
+      <span>By {currentCard.author} </span>
     </div>
-  );
-};
+  </div>
+);
 
-// Make sure to include PropTypes.
+Card.propTypes = {
+  currentCard: Props.shape({
+    headline: Props.string.isRequired,
+    tab: Props.string.isRequired,
+    img: Props.string.isRequired,
+    author: Props.string.isRequired
+  }).isRequired
+};
 
 export default Card;

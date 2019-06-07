@@ -1,19 +1,28 @@
 import React from "react";
+import Props from "prop-types";
+import { v4 } from "uuid";
 import Tab from "./Tab";
-const Tabs = ({ tabs, selectedTab, selectTabHandler }) => {
-  return (
-    <div className="tabs">
-      <div className="topics">
-        <span className="title">TRENDING TOPICS:</span>
-        {/* map over the tabs provided on your props, create a new Tab component for each one.
-            give the tab component a `selectTabHandler`, the `selectedTab`, and the `tab` itself as props*/}
-        {tabs.map(tab => (
-          <Tab tab={tab} selectedTab={selectedTab} selectTabHandler={selectTabHandler} />
-        ))}
-      </div>
+
+const Tabs = ({ tabs, selectedTab, selectTabHandler }) => (
+  <div className="tabs">
+    <div className="topics">
+      <span className="title">TRENDING TOPICS:</span>
+      {tabs.map(tab => (
+        <Tab
+          key={v4()}
+          selectTab={tab}
+          currentTab={selectedTab}
+          changeTabHandler={selectTabHandler}
+        />
+      ))}
     </div>
-  );
+  </div>
+);
+
+Tabs.propTypes = {
+  tabs: Props.arrayOf(Props.string).isRequired,
+  selectedTab: Props.string.isRequired,
+  selectTabHandler: Props.func.isRequired
 };
 
-// Make sure to use PropTypes to validate your types!
 export default Tabs;
